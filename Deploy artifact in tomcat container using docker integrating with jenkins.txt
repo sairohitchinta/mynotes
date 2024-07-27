@@ -1,0 +1,69 @@
+Deploy artifact in tomcat container using docker integrating with jenkins
+------------------------------------------------------------------------------------------------
+
+1) Create an EC2 instance and install git, java-1.8.0-openjdk, maven, tree, docker in it
+
+		sudo -i
+		yum install git java-1.8.0-openjdk maven tree docker -y
+		systemctl start docker
+
+2) Run the Jenkins script to run Jenkins in the same ec2 instance
+		
+		vi jenkins.sh
+			copy the content from my repo setups
+		sh jenkins.sh
+
+3) Change permission for docker.sock and restart the docker service
+
+		chmod 777 /var/run/docker.sock
+		systemctl daemon-reload
+		systemctl restart docker
+
+4) Setup Jenkins and download pipeline stageview plugin
+
+
+5) new job --> job_name --> pipeline --> ok --> write the below pipeline script with parameterised option
+
+pipeline{
+    
+    agent any
+    
+    stages{
+        stage('git checkout'){
+            steps{
+                git 'https://github.com/sairohitchinta/jenkins-java-project.git'
+            }
+        }
+        stage('build'){
+            steps{
+                sh 'mvn clean package'
+            }
+        }
+        stage('build image'){
+            steps{
+                sh 'docker build -t $image .'
+            }
+        }
+        stage('push to dockerhub'){
+            steps{
+                sh 'docker tag $image sairohitchinta/newproject'
+                sh 'docker login -u $username -p $password'
+                sh 'docker push sairohitchinta/newproject'
+            }
+        }
+        stage('run container'){
+            steps{
+                sh 'docker run -itd --name $containerName -p $containerPort:8080 $image'
+            }
+        }
+    }
+}
+
+add parameters for image, username, password, containerName, containerPort 
+
+6) build with parameters option
+
+7) copy the public_ip & paste it in browser 
+			
+		Public_IP:8181/NETFLIX-1.2.2
+
