@@ -1,0 +1,35 @@
+Vi editor tips
+--------------------
+	NOTE:
+	--------
+		MAKE SURE U R NOT IN INSERT MODE
+
+gg 								cursor will go to first line
+G								cursor will go to last line
+o								start editing the below line of the cursor, use this instead of insert mode
+O								start editing the above line of the cursor
+x								to delete a character where the cursor is present
+r								to replace a character where the cursor is present
+
+:set nu							insert number before the lines 
+:set nonu						which will remove the lines
+
+u								undo	
+ctrl + r							redo
+
+dd								delete the line where the cursor is present
+100dd							delete the 100lines from the cursor below (or) to clear the data
+v								visual mode where we can select the data using arrows
+y								to copy the data
+yy 								to copy the complete line where the cursor is present w/o going to visual mode
+p								to paste the data where the cursor is
+
+/word (or) *					search the word from top to bottom and press n for next occurrence
+?word  (or) #					search the word from bottom to top and press n for next occurrence
+:%s/oldword/newword/g		replacing the old word with new word globally
+
+
+vi -o file1 file2 					opens 2 files at a time
+WW							to shift from 1 file to other
+
+
