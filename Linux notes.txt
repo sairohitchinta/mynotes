@@ -1,0 +1,36 @@
+Linux (linus tarvolds in 1991)
+---------------------------------------
+
+OS:
+------
+	--> bridge b/w the user & computer h/w
+
+KERNAL:
+--------------
+
+	--> bridge b/w the OS & computer h/w
+
+
+			[root@ip-172-31-81-37 ~]#
+			user      hostname		   
+
+				# --> root user
+				$ --> normal user
+
+
+mkdir directory_name			--> to create a directory	
+mkdir a b c						--> to create multiple directories at the same time
+mkdir -p a/b/c					--> to create a directory structure
+mkdir "devops and aws"			--> to create directory name with spaces
+cd ..								--> change directory
+cd								--> directory goes to starting workspace
+#								--> used for comments
+echo $SHELL 					--> to check which shell is used by default
+cat /etc/shells					--> to c what r the shells types present in the system
+echo $? 							--> to check whether the previous cmd is executed successfully or not if it returns --> 0    		--> success
+																												anynumber --> failure
+
+
+
+
+	
